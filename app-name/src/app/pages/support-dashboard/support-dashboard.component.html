@@ -1,0 +1,56 @@
+<div class="content-block dx-card" >
+    <div style="text-align: center">
+        <p style="font-size:20px;">SUPPORT DASHBOARD</p>
+    </div>
+</div>
+<div class="content-block dx-card responsive-paddings" style=" padding-left: 1.42em; padding-right: 1.42em; padding-top: 1.42em;">
+    <div id="button">
+        <app-iconbutton [icon]="'edit'" [type]="'success'" [text]="'Generate New'" [height]="'3.57em'"
+            [width]="'14.2em'" (click)="newTicket()"></app-iconbutton>
+    </div>
+    
+    <div id="button">
+        <app-iconbutton [icon]="'warning'" [type]="'default'" [text]="'Pending Tickets'" [height]="'3.57em'"
+            [width]="'14.2em'" (click)="pendingTicket()"></app-iconbutton>
+    </div>
+    <div id="button">
+        <app-iconbutton [icon]="'clear'" [type]="'danger'" [text]="'Closed Tickets'" [height]="'3.57em'"
+            [width]="'14.2em'" (click)="closedTicket()"></app-iconbutton>
+    </div>
+</div>
+    <div class="content-block dx-card responsive-paddings">
+    <dx-responsive-box>
+        <dxi-row></dxi-row>
+        <dxi-row></dxi-row>
+        <dxi-row></dxi-row>
+        <dxi-col></dxi-col>
+        <dxi-col></dxi-col>
+        <dxi-col></dxi-col>
+        <dxi-item>
+            <dxi-location [row]="0" [col]="0" screen="md lg"></dxi-location>
+            <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+            <div class="dx-card">
+                <app-multi-doughnut [id]="'DepartmentWise'" [palette]="'ocean'" [type]="'pie'" [nme]="'deptwiseticks'"
+                    [argField1]="'_id'" [valField1]="'Count'" [URL]="'deptwiseticks'" [innerRadius]="'0'">
+                </app-multi-doughnut>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location [row]="1" [col]="0" screen="md lg"></dxi-location>
+            <dxi-location [row]="1" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+            <div class="dx-card">
+                <app-multi-doughnut [id]="'solvedTicks'" [palette]="'office'" [type]="'pie'" [nme]="'ticksStatus'"
+                    [argField1]="'_id'" [valField1]="'Count'" [URL]="'tickstatus'"></app-multi-doughnut>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location [row]="0" [col]="1" screen="md lg"></dxi-location>
+            <dxi-location [row]="1" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+            <div class="dx-card">
+                <app-multi-doughnut [id]="'solvedTicks'" [palette]="'office'" [type]="'pie'" [nme]="'probtype'"
+                    [argField1]="'_id'" [valField1]="'Count'" [URL]="'probtype'"></app-multi-doughnut>
+            </div>
+        </dxi-item>
+    </dx-responsive-box>
+    
+</div>

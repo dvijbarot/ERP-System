@@ -1,0 +1,51 @@
+<dx-chart
+    id={{id}}
+    [dataSource]="dataSource"
+    title= {{title}}>
+    <dxi-series
+        valueField={{valueField}}
+        name={{name}}
+        stack={{stack}}>
+    </dxi-series>
+    <dxi-series
+        valueField={{valueField1}}
+        name={{name1}}
+        stack={{stack1}}>
+    </dxi-series>
+    <dxi-series
+        valueField={{valueField2}}
+        name={{name2}}
+        stack={{stack2}}>
+    </dxi-series>
+    <dxi-series
+        valueField={{valueField3}}
+        name={{name3}}
+        stack={{stack3}}>
+    </dxi-series>
+    <dxi-series
+        valueField={{valueField4}}
+        name={{name4}}
+        stack={{stack4}}>
+    </dxi-series>
+    <dxi-series
+        valueField={{valueField5}}
+        name={{name5}}
+        stack={{stack5}}>
+    </dxi-series>
+    <dxi-value-axis>
+        <dxo-title text={{valueAxis}}></dxo-title>
+    </dxi-value-axis>
+    <dxo-common-series-settings
+        argumentField={{state}}
+        type={{type}}>
+    </dxo-common-series-settings>
+    <dxo-legend
+        horizontalAlignment="right"
+        columnCount={{columnCount}}
+        [customizeItems]="customizeItems"
+        position={{position}}>
+        <dxo-border [visible]="true"></dxo-border>
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-tooltip [enabled]="true"></dxo-tooltip>
+</dx-chart>

@@ -1,0 +1,252 @@
+<div class="content-block">
+    <div id="calls"><b> Trader Call Registration</b></div>
+</div>
+<div class="content-block dx-card">
+    <div id="data-grid">
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+            [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)" [columnMinWidth]="100"
+            (onRowExpanding)="selectionChanged($event)" [showColumnLines]="true" [showRowLines]="true"
+            [showBorders]="true">
+            <dxo-sorting mode="none"> </dxo-sorting>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+            <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showNavigationButtons]="true">
+            </dxo-pager>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+                <dxo-popup title="Registration" [showTitle]="true" [width]="750"
+                    [position]="{ my: 'middle', at: 'middle'}"> </dxo-popup>
+                <dxo-form>
+                    <dxi-item itemType="group" caption="Personal Details" [colCount]="2" [colSpan]="2">
+                        <dxi-item dataField="Firstname"></dxi-item>
+                        <dxi-item dataField="Lastname"></dxi-item>
+                        <dxi-item dataField="Email"></dxi-item>
+                        <dxi-item dataField="Telephone"></dxi-item>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Commodity Details " [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="role"></dxi-item>
+                        <dxi-item dataField="commodityname"></dxi-item>
+                        <dxi-item dataField="Quantity"></dxi-item>
+                        <dxi-item dataField="Variety"></dxi-item>
+                        <dxi-item dataField="Quality"></dxi-item>
+                        <dxi-item dataField="ResidueFree"></dxi-item>
+                        <dxi-item dataField="Organic"></dxi-item>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Crop Duration" [colCount]="2" [colSpan]="2">
+                        <dxi-item dataField="ValidFrom"></dxi-item>
+                        <dxi-item dataField="ValidTill"></dxi-item>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Address Details" [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="City"></dxi-item>
+                        <dxi-item dataField="District"></dxi-item>
+                        <dxi-item dataField="State"></dxi-item>
+                    </dxi-item>
+                </dxo-form>
+            </dxo-editing>
+            <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="role" caption="Role" [allowFiltering]="true">
+                <dxo-lookup [dataSource]="Role" valueExpr="value" displayExpr="value"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="commodityname" caption="Crop Name" [allowFiltering]="true" [groupIndex]="0">
+                <dxo-lookup [dataSource]="productlist" valueExpr="Name" displayExpr="Name"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="Quantity" caption="Quantity" [visible]="false" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Variety" caption="Variety" [visible]="false" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Quality" caption="Quality" [visible]="false" [allowFiltering]="true">
+                <dxo-lookup [dataSource]="quality" valueExpr="value" displayExpr="value"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="ValidFrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till" [allowFiltering]="true">
+            </dxi-column>
+            <dxi-column dataField="District" caption="District" [visible]="false" [allowFiltering]="true">
+            </dxi-column>
+            <dxi-column dataField="State" caption="State" [visible]="false" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="City" caption="City" [visible]="false" [allowFiltering]="true"></dxi-column>
+            <dxi-column dataField="Organic" caption="Organic" [visible]="false"></dxi-column>
+            <dxi-column dataField="ResidueFree" caption="Residue Free" [visible]="false"></dxi-column>
+            <div *dxTemplate="let UR of 'masterDetail'">
+                <dx-tab-panel [animationEnabled]="true">
+                    <dxi-item title="Details" template="InfoDetailsTab" id="tab">
+                        <div *dxTemplate="let InfoDetailsTabItem of 'InfoDetailsTab'">
+                            <form>
+                                <div id="block">
+                                    <div class="r">
+                                        <div class="c1">
+                                            Address Details
+                                        </div>
+                                        <div class="c2">
+                                            Crop Details
+                                        </div>
+                                    </div>
+                                    <div class="row1">
+                                        <div class="col1">
+                                            <br>
+                                            <div id="label">City</div>
+                                            <p id="field">{{UR.data.City}}<p>
+                                            <div id="label">State</div>
+                                            <p id="field">{{UR.data.State}}</p>
+                                        </div>
+                                        <div class="column1">
+                                            <br>
+                                            <div id="label">District</div>
+                                            <p id="field">{{UR.data.District}}<p>
+                                        </div>
+                                        <div class="column1">
+                                            <br>
+                                            <div id="label" class="label">Quantity</div>
+                                            <p id="field">{{UR.data.Quantity}}</p>
+                                            <div id="label" class="label">Quality</div>
+                                            <p id="field">{{UR.data.Quality}}</p>
+                                            <div id="label" class="label">Variety</div>
+                                            <p id="field">{{UR.data.Variety}}</p>
+                                        </div>
+                                        <div class="column1">
+                                            <br>
+                                            <div id="label" class="label">Organic</div>
+                                            <p id="field">{{UR.data.Organic}}</p>
+                                            <div id="label" class="label">Residue Free</div>
+                                            <p id="field">{{UR.data.ResidueFree}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </dxi-item>
+                    <dxi-item title="Call Details" template="DetailsTab" id="tab"></dxi-item>
+                    <div *dxTemplate="let DetailsTabItem of 'DetailsTab'">
+                        <div>
+                            <form id="form1" #form1 method="post" action="" enctype="multipart/form-data">
+                                <div id="cap" style="text-align: center;">Enter Call Details for {{UR.data.Firstname}}
+                                </div>
+                                <div id="block">
+                                    <div class="row">
+                                        <div class="column">
+                                            <p id="align">Call Status</p>
+                                            <div id="dx">
+                                                <dx-select-box id="dx" #CallStatus dataField="CallStatus"
+                                                    placeholder="Choose the Status of the Call" [items]="CallS">
+                                                </dx-select-box>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <p id="align">Remarks</p>
+                                            <div id="dx">
+                                                <dx-select-box id="dx" #Remarks dataField="Remarks"
+                                                    placeholder="Choose the Remark of the Call" [items]="RemarksList">
+                                                </dx-select-box>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="column">
+                                            <p id="align">Call On</p>
+                                            <div id="dx">
+                                                <dx-date-box #CallOn name="CallOn" [value]="now"
+                                                    placeholder="Date of the call" pickerType="rollers"></dx-date-box>
+
+                                                <dx-text-box id="hide" #ClientRef dataField="ClientRef" name="ClientRef"
+                                                    value="{{UR.key}}">
+                                                </dx-text-box>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <p id="align">Time Of Call</p>
+                                            <div id="dx">
+                                                <dx-date-box #TimeOfCall dataField="TimeOfCall" name="TimeOfCall"
+                                                    type="time">
+                                                </dx-date-box>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <p id="align">Notes</p>
+                                        <div id="dx">
+                                            <dx-text-box #Notes dataField="Notes" name="Notes"></dx-text-box>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="column" id="center">
+                                        <dx-button id="button" text="Save Details" type="success"
+                                            (click)="Save(CallStatus.value,Remarks.value,CallOn.value,TimeOfCall.value,Notes.value,ClientRef.value)">
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <dxi-item title="Call History" template="HistoryTab" id="tab"></dxi-item>
+                    <div *dxTemplate="let HistoryTabItem of 'HistoryTab'">
+                        <div>
+                            <dx-data-grid [dataSource]="history" [showBorders]="true" [columnHidingEnabled]="false"
+                                [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+                                <dxi-column dataField="CallStatus" caption="Call Status" [allowFiltering]="true">
+                                </dxi-column>
+                                <dxi-column dataField="CallOn" caption="Call On" [allowFiltering]="true"></dxi-column>
+                                <dxi-column dataField="TimeOfCall" caption="Time Of Call" [allowFiltering]="true">
+                                </dxi-column>
+                                <dxi-column dataField="Remarks" caption="Remarks" [allowFiltering]="true"></dxi-column>
+                                <dxi-column dataField="Notes" caption="Notes" [allowFiltering]="true"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                    <dxi-item title="Matches" template="PM" id="tab"> </dxi-item>
+                    <div *dxTemplate="let MatchesTabItem of 'PM'">
+                        <div id="cap" style="text-align: center;"> Unregistered Users</div>
+                        <dx-data-grid [dataSource]="sellmatchUR" [showBorders]="true" [columnHidingEnabled]="false"
+                            [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)"
+                            [columnMinWidth]="100">
+                            <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="role" caption="Role" [allowFiltering]="true" [visible]="false">
+                            </dxi-column>
+                            <dxi-column dataField="commodityname" caption="Commodity Name" [allowFiltering]="true"
+                                [visible]="false">
+                            </dxi-column>
+                            <dxi-column dataField="Quantity" caption="Quantity" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Quality" caption="Quality" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="ValidFrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till"
+                                [allowFiltering]="true">
+                            </dxi-column>
+                            <dxi-column dataField="RequestTime" caption="Request Time" [allowFiltering]="true"
+                                [visible]="false">
+                            </dxi-column>
+                        </dx-data-grid>
+                        <div id="cap" style="text-align: center;">Registered Users</div>
+                        <dx-data-grid [dataSource]="sellmatchR" [showBorders]="true" [columnHidingEnabled]="false"
+                            [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)"
+                            [columnMinWidth]="100">
+                            <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="role" caption="Role" [allowFiltering]="true" [visible]="false">
+                            </dxi-column>
+                            <dxi-column dataField="commodityname" caption="Commodity Name" [allowFiltering]="true"
+                                [visible]="false">
+                            </dxi-column>
+                            <dxi-column dataField="quantity" caption="Quantity" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="quality" caption="Quality" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="Validfrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+                            <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till"
+                                [allowFiltering]="true">
+                            </dxi-column>
+                            <dxi-column dataField="RequestTime" caption="Request Time" [allowFiltering]="true"
+                                [visible]="false">
+                            </dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </dx-tab-panel>
+            </div>
+        </dx-data-grid>
+
+    </div>
+</div>

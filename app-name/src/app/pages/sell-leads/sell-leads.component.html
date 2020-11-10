@@ -1,0 +1,154 @@
+<div>
+  <div class="content-block" id='SL'><b>Sell Leads</b> </div>
+  <div class="content-block dx-card">
+    <div id="data-grid">
+      <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+        [columnAutoWidth]="true" (onRowExpanding)="selectionChanged($event)"  [showColumnLines]="true" 
+        (onSelectionChanged)="selectionChanged($event)" [masterDetail]="{ enabled: true, template: 'masterDetail' }">
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+        </dxo-pager>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        <dxo-sorting mode="none"> </dxo-sorting>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+        <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="role" caption="Role" [allowFiltering]="true"[visible]="false"></dxi-column>
+        <dxi-column dataField="commodityname" caption="Commodity Name" [allowFiltering]="true" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="quantity" caption="Quantity" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="quality" caption="Quality" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="Validfrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till" [allowFiltering]="true"></dxi-column>
+        <dxi-column dataField="RequestTime" caption="Request Time" [allowFiltering]="true" [visible]="false"></dxi-column>
+        
+        <div *dxTemplate="let SL of 'masterDetail'">
+          <dx-tab-panel [animationEnabled]="true">
+            <dxi-item title="Call Details" template="DetailsTab" id="tab"></dxi-item>
+          <div *dxTemplate="let DetailsTabItem of 'DetailsTab'">
+            <div>
+              <form id="form1" #form1 method="post" action="" enctype="multipart/form-data">
+                <div id="cap" style="text-align: center;">Enter Call Details for {{SL.data.Firstname}}</div>
+                <div id="block">
+                  <div class="row">
+                    <div class="column">
+                      <p id="align">Call Status</p>
+                      <div id="dx">
+                        <dx-select-box id="dx" #CallStatus dataField="CallStatus" [items]="CallS"
+                          placeholder="Choose the Status of the Call">
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <p id="align">Remarks</p>
+                      <div id="dx">
+                        <dx-select-box id="dx" #Remarks dataField="Remarks" [items]="RemarksList"
+                          placeholder="Choose the Remark of the Call">
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="column">
+                      <p id="align">Call On</p>
+                      <div id="dx">
+                        <dx-date-box #CallOn name="CallOn" [value]="now" placeholder="Date of the call"
+                          pickerType="rollers"></dx-date-box>
+
+                        <dx-text-box id="hide" #ClientRef dataField="ClientRef" name="ClientRef" value={{SL.key}}>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <p id="align">Time Of Call</p>
+                      <div id="dx">
+                        <dx-date-box #TimeOfCall dataField="TimeOfCall" name="TimeOfCall" type="time">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <!-- <div class="column"> -->
+                    <!-- <p id="hide">Call By</p>
+                    <div id="hide">
+                      <dx-text-box #CallBy dataField="CallBy" name="CallBy" placeholder="Call by"></dx-text-box>
+                    </div> -->
+                    <!-- </div> -->
+                  </div>
+                  <div class="column">
+                    <p id="align">Notes</p>
+                    <div id="dx">
+                      <dx-text-box #Notes dataField="Notes" name="Notes"></dx-text-box>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="column" id="center">
+                    <dx-button id="button" text="Save Details" type="success" 
+                      (click)="Save(CallStatus.value,Remarks.value,CallOn.value,TimeOfCall.value,Notes.value,ClientRef.value)">
+                    </dx-button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <dxi-item title="Matches" template="PM" id="tab"> </dxi-item>
+          <div *dxTemplate="let MatchesTabItem of 'PM'">
+            <div id="cap" style="text-align: center;">Registered Users</div>
+            <dx-data-grid [dataSource]="buymatch" [showBorders]="true" [columnHidingEnabled]="false"
+              [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+              <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="role" caption="Role" [allowFiltering]="true" [visible]="false"></dxi-column>
+              <dxi-column dataField="commodityname" caption="Commodity Name" [allowFiltering]="true" [visible]="false">
+              </dxi-column>
+              <dxi-column dataField="quantity" caption="Quantity" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="quality" caption="Quality" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Validfrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till" [allowFiltering]="true">
+              </dxi-column>
+              <dxi-column dataField="RequestTime" caption="Request Time" [allowFiltering]="true" [visible]="false">
+              </dxi-column>
+            </dx-data-grid>
+            <div id="cap" style="text-align: center;">Unregistered Users</div>
+            <dx-data-grid [dataSource]="buymatchUR" [showBorders]="true" [columnHidingEnabled]="false"
+              [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+              <dxi-column dataField="Firstname" caption="First Name" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Lastname" caption="Last Name" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Telephone" caption="Telephone" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Email" caption="Email" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="role" caption="Role" [allowFiltering]="true" [visible]="false"></dxi-column>
+              <dxi-column dataField="commodityname" caption="Commodity Name" [allowFiltering]="true" [visible]="false">
+              </dxi-column>
+              <dxi-column dataField="Quantity" caption="Quantity" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="Quality" caption="Quality" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="ValidFrom" caption="Valid From" [allowFiltering]="true"></dxi-column>
+              <dxi-column dataField="ValidTill" sortOrder="desc" caption="Valid Till" [allowFiltering]="true">
+              </dxi-column>
+              <dxi-column dataField="RequestTime" caption="Request Time" [allowFiltering]="true" [visible]="false">
+              </dxi-column>
+            </dx-data-grid>
+          </div>
+          <dxi-item title="Call History" template="HistoryTab" id="tab"></dxi-item>
+          <div *dxTemplate="let HistoryTabItem of 'HistoryTab'">
+            <div>
+              <dx-data-grid [dataSource]="history" [showBorders]="true" [columnHidingEnabled]="false"
+                [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+                <dxi-column dataField="CallStatus" caption="Call Status" [allowFiltering]="true"></dxi-column>
+                <dxi-column dataField="CallOn" caption="Call On" [allowFiltering]="true"></dxi-column>
+                <dxi-column dataField="TimeOfCall" caption="Time Of Call" [allowFiltering]="true"></dxi-column>
+                <dxi-column dataField="Remarks" caption="Remarks" [allowFiltering]="true"></dxi-column>
+                <dxi-column dataField="Notes" caption="Notes" [allowFiltering]="true"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+          </dx-tab-panel>
+        </div>
+      </dx-data-grid>
+    </div>
+  
+  </div>
+

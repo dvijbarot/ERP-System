@@ -1,0 +1,19 @@
+<div class="content-block dx-card" >
+    <div style="text-align: center">
+        <p style="font-size:25px;">HR DASHBOARD</p>
+    </div>
+</div>
+
+<div style="text-align: center " fxLayout="row"> 
+    <div id="department" fxLayoutGap="180px col-12-sm">
+        <app-multi-doughnut [id]="'Pie'" [title]="'Department'" [subtitle]="'Number employees in each department'"
+            [palette]="'material'" [type]="'doughnut'" [name]="'Employees '" [argumentField]="'_id'"
+            [valueField]="'count'" [URL]="'showdepcharts'" [innerRadius]="''"></app-multi-doughnut>
+    </div>
+    <div id="role" fxLayoutGap="180px col-12-sm">
+        <app-multi-doughnut [id]="'Pie'" [title]="'Role'" [subtitle]="'Number employees in each role'"
+            [palette]="'material'" [type]="'doughnut'" [name]="'Employees '" [argumentField]="'_id'"
+            [valueField]="'count'" [URL]="'showrolecharts'" [innerRadius]="''"></app-multi-doughnut>
+    </div>
+</div>
+<app-barchart></app-barchart>

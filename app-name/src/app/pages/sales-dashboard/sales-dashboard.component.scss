@@ -1,0 +1,87 @@
+#dash{
+    font-display: 500;
+ }
+ #graphtitle{
+   font-size:20px;
+ }
+ // #select{
+ //    padding-left: 20em;
+ //    padding-right: 20em;
+ // }
+ #allcards1{
+    display: flex;
+    padding-left:20px;
+    padding-top: 10px;
+    padding-left: 20px;   
+ }
+ #pie{
+     padding-top: 10px;
+     padding-bottom: 10px;
+     width: 590px;
+     border: 1px solid black;
+ }
+ #bar{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 600px;
+    border: 1px solid black;
+ }
+ #charts{
+     display: flex;
+ }
+ #charts1{
+    display: auto;
+ }
+ 
+ #sbs{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    border: 1px solid black;
+ }
+ 
+ .column{
+    flex: 50%;
+    padding-top:10px
+  }
+  .row {
+    display: flex;
+  }
+ #card1{
+   background-color: #E32249;
+   height:11em;
+   width:14.5em;
+ 
+ }
+ #card2{
+   background-color:	#4682B4;
+   // background-color:#008B8B;
+   height:11em;
+   width:14.5em;
+ }
+ #card3{
+   // background-color:	#21B573;
+   background-color:	 #9ACD32;
+   // background-color:	 #006400
+   height:11em;
+   width:14.5em;
+ 
+   
+ }
+ #card4{
+   background-color:	#FFCC00;
+   height:11em;
+   width:14.5em;
+ }
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

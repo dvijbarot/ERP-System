@@ -1,0 +1,28 @@
+<div class="content-block dx-card" id="business">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Add Department</p>
+    </div>
+</div>
+<div class="content-block dx-card">
+    <div id="data-grid-demo">
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+            [masterDetail]="{ enabled: false}" [columnAutoWidth]="true"  [allowColumnReordering]="true" [showColumnLines]="true">
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+                <dxo-popup title="Add Department" [showTitle]="true" [width]="750">
+                </dxo-popup>
+                <dxo-form>
+                    <dxi-item itemType="group" caption="Department Details" [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="Department"></dxi-item>
+                        <dxi-item dataField="dStatus"></dxi-item>
+                    </dxi-item>
+
+                </dxo-form>
+            </dxo-editing>
+
+
+            <dxi-column dataField="Department"></dxi-column>
+            <dxi-column dataField="dStatus"></dxi-column>
+        </dx-data-grid>
+    </div>
+</div>

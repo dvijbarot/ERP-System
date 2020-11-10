@@ -1,0 +1,33 @@
+<dx-data-grid
+    id= {{id}}
+    [dataSource]="dataSource"
+    [columns] = "columns"
+    [remoteOperations]="false"
+    [allowColumnReordering]="true"
+    [columnWidth]="undefined"
+    [rowAlternationEnabled]="true"
+    [showBorders]="true"
+    [showColumnLines]="false"
+    [showRowLines]="true"
+    [columnHidingEnabled]="true"
+    [masterDetail]="{ enabled: true }"
+    [columnAutoWidth]="true"
+    >
+    <dxo-export [enabled]="true" fileName="DataGrid" [allowExportSelectedData]="true"></dxo-export>
+    <dxo-paging [pageSize]="5"></dxo-paging>
+    <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5,10,15,20]"
+    ></dxo-pager>
+    <dxo-search-panel
+        [visible]="true"
+        [highlightCaseSensitive]="true"
+    ></dxo-search-panel>
+    <dxo-group-panel
+        [visible]="true"
+    ></dxo-group-panel>
+    <dxo-grouping
+        [autoExpandAll]="false"
+    ></dxo-grouping>
+>
+</dx-data-grid>

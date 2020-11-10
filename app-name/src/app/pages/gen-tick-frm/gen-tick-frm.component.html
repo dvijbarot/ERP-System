@@ -1,0 +1,76 @@
+<div class="content-block dx-card responsive-paddings">
+    <div class="dx-field-label">Contact <i>(Please enter the Registered Mobile Number)</i></div>
+    <div class="row">
+        <div class="column">
+            <dx-text-box #telephone mode="search" 
+                maskInvalidMessage="The phone must have a correct phone format" [useMaskedValue]="true"
+                [stylingMode]="stylingMode" height="2.85em">
+            </dx-text-box>
+        </div>
+        <div class="column">
+            <dx-button style="text-align: center;" id="button" text="Get Data" type="outline"
+                (click)=getDetails(telephone.value)>
+            </dx-button>
+        </div>
+    </div>
+    <dx-form id="form" [formData]="selectedEntity" labelLocation="top" [minColWidth]="233" colCount="2" readOnly="true">
+    </dx-form>
+    <!-- </div>
+<div class="content-block dx-card responsive-paddings"> -->
+    <form action="your-action">
+        <div class="dx-fieldset-header">Ticket Information</div>
+        <div class="dx-field">
+            <div class="dx-field-label">Problem Type</div>
+            <div class="dx-field-value">
+                <dx-select-box #prob height="2.5rem" [items]="['Cannot Trade','Payments','Tool Error']"
+                    [stylingMode]="stylingMode">
+                </dx-select-box>
+            </div>
+        </div>
+        <div class="dx-field">
+            <div class="dx-field-label">Subject</div>
+            <div class="dx-field-value">
+                <dx-text-box #subject [stylingMode]="stylingMode" height="2.85em">
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="dx-field">
+            <div class="dx-field-label">Description</div>
+            <div class="dx-field-value">
+                <dx-text-area #desc [height]="80" [maxLength]="250" [stylingMode]="stylingMode">
+                </dx-text-area>
+            </div>
+        </div>
+        <div class="dx-field">
+            <div class="dx-field-label">Remarks</div>
+            <div class="dx-field-value">
+                <dx-text-box #remarks [stylingMode]="stylingMode" height="2.85em">
+                </dx-text-box>
+            </div>
+        </div>
+        <div class="row1">
+            <div class="column1">
+                <div class="dx-field-label">Priority</div>
+                <div class="dx-field-value">
+                    <dx-select-box #priority height="2.5rem" [items]="['Urgent','High', 'Normal', 'Low']"
+                        [stylingMode]="stylingMode">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div class="column1">
+                <div class="dx-field-label">Department</div>
+                <div class="dx-field-value">
+                    <dx-select-box #dept height="2.5rem" valueExpr="Department" displayExpr="Department"
+                        [items]="Department" [stylingMode]="stylingMode">
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="text-align: right;">
+            <dx-button id="button" text="Generate" type="success"
+                (click)="Generate(prob.value,subject.value,desc.value,remarks.value,priority.value,dept.value,telephone.value)">
+            </dx-button>
+        </div>
+    </form>
+</div>

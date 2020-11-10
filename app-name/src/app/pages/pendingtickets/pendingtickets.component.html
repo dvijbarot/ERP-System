@@ -1,0 +1,84 @@
+<div class="title">
+    <h3>Pending Tickets</h3>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid id="gridContainer" [dataSource]="ticketData" [masterDetail]="{ enabled: true, template: 'detail' }"
+        keyExpr="_id" [showBorders]="true" (onSelectionChanged)="selectionChanged($event)" [filterValue]="filterValue"
+        (onRowExpanding)="selectionChanged($event)">
+        <dxo-editing mode="popup" [allowUpdating]="true">
+            <dxo-popup title="Add Activity" [showTitle]="true"
+                [position]="{ my: 'middle', at: 'middle' }">
+            </dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" caption="Activity Details" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="Role"></dxi-item>
+                    <dxi-item dataField="Firstname"></dxi-item>
+                    <dxi-item dataField="createdAt"></dxi-item>
+                    <dxi-item dataField="Subject"></dxi-item>
+                    <dxi-item dataField="Priority"></dxi-item>
+                    <dxi-item dataField="AssignedOn"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Ticket Attributes" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="Telephone"></dxi-item>
+                    <dxi-item dataField="entityID"></dxi-item>
+                    <dxi-item dataField="solved"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+        <dxi-column dataField="_id" caption="TicketID"></dxi-column>
+        <dxi-column dataField="Role" caption="Role"></dxi-column>
+        <dxi-column dataField="Firstname" caption="Name"></dxi-column>
+        <!-- <dxi-column dataField="EmpName"></dxi-column> -->
+        <dxi-column dataField="createdAt" dataType="date" caption="CreatedOn"></dxi-column>
+        <dxi-column dataField="Priority"></dxi-column>
+        <dxi-column dataField="Subject"></dxi-column>
+        <dxi-column dataField="AssignedOn" dataType="date"></dxi-column>
+        <dxi-column dataField="Department" [visible]='false'></dxi-column>
+        <dxi-column dataField="Telephone"></dxi-column>
+        <dxi-column dataField="entityID" [visible]='false'></dxi-column>
+        <dxi-column dataField="solved" [visible]='false'></dxi-column>
+        <dxi-column dataField="entityID" ></dxi-column>
+        <div *dxTemplate="let dataSource of 'detail'">
+            <dx-text-box #clientID value={{dataSource.data._id}} [visible]="false"></dx-text-box>
+            <b>Description: </b>{{dataSource.data.Description}}<br />
+            <b>Remarks: </b>{{dataSource.data.Description}}
+            <div class="dx-card ">
+                <dx-data-grid id="Activty Container" [dataSource]="activityData" [showBorders]="true"
+                    [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+                    <dxo-group-panel [visible]="true"></dxo-group-panel>
+                    <dxo-editing mode="popup" [allowAdding]="true">
+                        <dxo-popup title="Add Activity" [showTitle]="true" [width]="750"
+                            [position]="{ my: 'middle', at: 'middle' }">
+                        </dxo-popup>
+                        <dxo-form>
+                            <dxi-item itemType="group" caption="Activity Details" [colCount]="1" [colSpan]="2">
+                                <dxi-item dataField="Solution"></dxi-item>
+                                <dxi-item dataField="Notes"></dxi-item>
+                            </dxi-item>
+                            <dxi-item itemType="group" caption="Ticket Attributes" [colCount]="2" [colSpan]="2">
+                                <dxi-item dataField="Department"></dxi-item>
+                            </dxi-item>
+                        </dxo-form>
+                    </dxo-editing>
+                    <!-- <dxi-column dataField="_id" caption="ActivityID"></dxi-column> -->
+                    <dxi-column dataField="Solution" caption="Solution"></dxi-column>
+                    <dxi-column dataField="Notes"></dxi-column>
+                    <dxi-column dataField="Department" caption="Change Department" [visible]='false'>
+                        <dxo-lookup [dataSource]="Department" valueExpr="Department" displayExpr="Department"
+                            placeholder="Select Department">
+                        </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="createdAt" caption="CreatedOn" [groupIndex]="0"></dxi-column>
+                    <dxi-column dataField="ModifiedBy" caption="ModifiedBy" [visible]='false'></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>

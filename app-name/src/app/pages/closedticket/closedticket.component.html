@@ -1,0 +1,44 @@
+<div class="title">
+    <h3>Closed Tickets</h3>
+</div>
+<div class="content-block dx-card responsive-paddings">
+    <dx-data-grid id="gridContainer" [dataSource]="closedTicks" [masterDetail]="{ enabled: true, template: 'detail' }"
+        keyExpr="_id" [showBorders]="true" (onSelectionChanged)="selectionChanged($event)"
+        (onRowExpanding)="selectionChanged($event)">
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+        <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+        <!-- <dxi-column dataField="_id" caption="TicketID"></dxi-column> -->
+        <dxi-column dataField="Role" caption="Role"></dxi-column>
+        <dxi-column dataField="Firstname" caption="Name"></dxi-column>
+        <!-- <dxi-column dataField="EmpName"></dxi-column> -->
+        <dxi-column dataField="createdAt" dataType="date" caption="CreatedOn"></dxi-column>
+        <dxi-column dataField="Priority"></dxi-column>
+        <dxi-column dataField="Subject"></dxi-column>
+        <dxi-column dataField="AssignedOn" dataType="date"></dxi-column>
+        <!-- <dxi-column dataField="Description"></dxi-column> -->
+        <dxi-column dataField="Telephone"></dxi-column>
+        <div *dxTemplate="let dataSource of 'detail'">
+            <b>Description: </b>{{dataSource.data.Description}}<br />
+            <b>Remarks: </b>{{dataSource.data.Description}}
+            <div class="dx-card ">
+                <dx-data-grid id="Activty Container" [dataSource]="activityData" [showBorders]="true"
+                    [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+                    <dxo-group-panel [visible]="true"></dxo-group-panel>
+                    <dxi-column dataField="_id" caption="ActivityID"></dxi-column>
+                    <dxi-column dataField="Solution" caption="Solution"></dxi-column>
+                    <!-- <dxi-column dataField="Department" caption="Change Department" [visible]='false'>
+                        <dxo-lookup [dataSource]="Department" valueExpr="Department" displayExpr="Department"
+                            placeholder="Select Department">
+                        </dxo-lookup>
+                    </dxi-column> -->
+                    <dxi-column dataField="createdAt" caption="CreatedAt"></dxi-column>
+                    <dxi-column dataField="ModifiedBy" caption="ModifiedBy" [visible]='false'></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+    </dx-data-grid>
+</div>

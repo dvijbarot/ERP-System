@@ -1,0 +1,39 @@
+<div class="content-block dx-card" id="business">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Apply Leave</p>
+    </div>
+</div>
+<div class="content-block dx-card">
+    <div id="data-grid-demo">
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+            [columnAutoWidth]="true" [allowColumnReordering]="true" [showColumnLines]="true">
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+                <dxo-popup title="Apply Leave" [showTitle]="true" [width]="750"
+                    [position]="{ my: 'middle', at: 'middle' }">
+                </dxo-popup>
+                <dxo-form>
+                    <dxi-item itemType="group" [colCount]="2" [colSpan]="2"> 
+
+                        <dxi-item dataField="Type"></dxi-item>
+                        <dxi-item dataField="FromDate"></dxi-item>
+                        <dxi-item dataField="ToDate"></dxi-item>
+                        <dxi-item dataField="Description"></dxi-item>
+
+                    </dxi-item>
+                </dxo-form>
+            </dxo-editing>
+
+            <dxi-column dataField="Type">
+                <dxo-lookup [dataSource]="Type"  placeholder="Select type">
+                </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="FromDate" dataType="date"></dxi-column>
+            <dxi-column dataField="ToDate" dataType="date"></dxi-column>
+            <dxi-column dataField="Description"></dxi-column>
+
+        </dx-data-grid>
+    </div>
+</div>

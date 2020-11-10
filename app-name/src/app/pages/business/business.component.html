@@ -1,0 +1,191 @@
+<div class="content-block dx-card" id="business">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Business Registration</p>
+    </div>
+</div>
+<div class="content-block dx-card">
+    <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+        [columnMinWidth]="100" (onRowExpanding)="selectionChanged($event)"  [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" 
+        (onSelectionChanged)="selectionChanged($event)" [masterDetail]="{ enabled: true, template: 'masterDetail' }">
+        <dxo-sorting mode="none"> </dxo-sorting>
+        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+        <dxo-paging [enabled]="true" [pageSize]="5" [pageIndex]="1"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showNavigationButtons]="true">
+        </dxo-pager>
+
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+        <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+            <dxo-popup title="Business Registration" [showTitle]="true" [width]="750"
+                [position]="{ my: 'middle', at: 'middle'}"></dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" caption="Business Details" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="BusinessName"></dxi-item>
+                    <dxi-item dataField="BusinessEmail"></dxi-item>
+                    <dxi-item dataField="EntityType"></dxi-item>
+                    <dxi-item dataField="GSTNumber"></dxi-item>
+                    <dxi-item dataField="TradingAs"></dxi-item>
+                    <dxi-item dataField="NatureofBusiness"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Countries Of Trade" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="ContriesOfTrade"></dxi-item> 
+                </dxi-item>
+                <dxi-item itemType="group" caption="Business Address" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="address1"></dxi-item>
+                    <dxi-item dataField="address2"></dxi-item>
+                    <dxi-item dataField="address3"></dxi-item>
+                    <dxi-item dataField="address4"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Billing Address" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="address5"></dxi-item>
+                    <dxi-item dataField="address6"></dxi-item>
+                    <dxi-item dataField="address7"></dxi-item>
+                    <dxi-item dataField="address8"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption=" Delivery Address" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="address9"></dxi-item>
+                    <dxi-item dataField="address10"></dxi-item>
+                    <dxi-item dataField="address11"></dxi-item>
+                    <dxi-item dataField="address12"></dxi-item>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+        <dxi-column dataField="BusinessName" caption="Business Name"></dxi-column>
+        <dxi-column dataField="BusinessEmail" caption="Business Email"></dxi-column>
+        <dxi-column dataField="BusinessCode" caption="Business Code"></dxi-column>
+        <dxi-column dataField="EntityType" caption="Entity Type">
+            <dxo-lookup [dataSource]="entype" valueExpr="Name2" displayExpr="Name2"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="GSTNumber" caption="GST Number"></dxi-column>
+        <dxi-column dataField="NatureofBusiness" caption="Nature Of Business">
+            <dxo-lookup [dataSource]="nature" valueExpr="Name" displayExpr="Name"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="TradingAs" caption="Trading as">
+            <dxo-lookup [dataSource]="tradingas" valueExpr="Name" displayExpr="Name"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="ContriesOfTrade" [visible]="false">
+            <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="address1" caption="Building Name/Flat Number/ Floor" [visible]="false"></dxi-column>
+        <dxi-column dataField="address2" caption="Locality/Landmark" [visible]="false"></dxi-column>
+        <dxi-column dataField="address3" caption="City & Pincode" [visible]="false"></dxi-column>
+        <dxi-column dataField="address4" caption="Country" [visible]="false">
+            <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="address5" caption="Building Name/Flat Number/ Floor" [visible]="false"></dxi-column>
+        <dxi-column dataField="address6" caption="Locality/Landmark" [visible]="false"></dxi-column>
+        <dxi-column dataField="address7" caption="City & Pincode" [visible]="false"></dxi-column>
+        <dxi-column dataField="address8" caption="Country" [visible]="false">
+            <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="address9" caption="Building Name/Flat Number/ Floor" [visible]="false"></dxi-column>
+        <dxi-column dataField="address10" caption="Locality/Landmark" [visible]="false"></dxi-column>
+        <dxi-column dataField="address11" caption="City & Pincode" [visible]="false"></dxi-column>
+        <dxi-column dataField="address12" caption="Country" [visible]="false">
+            <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value"></dxo-lookup>
+        </dxi-column>
+        <div *dxTemplate="let Document of 'masterDetail'">
+            <dx-tab-panel [animationEnabled]="true">
+                <dxi-item title="Address Details" template="DetailsTab"></dxi-item>
+                <div *dxTemplate="let DetailsTabItem of 'DetailsTab'">
+                    <form>
+                        <div class="content-block" >
+                            <div class="row1">
+                                <div class="col1">
+                                    <caption id="caption">Business Address</caption>
+                                    <br>
+                                    <div id="label">Building Name/Flat No/Floor</div>
+                                    <p id="field">{{Document.data.address1}}<p>
+                                            <div id="label">Locality/Landmark</div>
+                                            <p id="field">{{Document.data.address2}}</p>
+                                            <div id="label">City & Pincode</div>
+                                            <p id="field">{{Document.data.address3}}<p>
+                                                    <div id="label">Country</div>
+                                                    <p id="field">{{Document.data.address4}}<p>
+                                </div>
+                                <div class="column1">
+                                    <caption id="caption">Operational Address</caption>
+                                    <br>
+                                    <div id="label" class="label">Building Name/Flat No/Floor</div>
+                                    <p id="field">{{Document.data.address5}}</p>
+                                    <div id="label" class="label">Locality/Landmark</div>
+                                    <p id="field">{{Document.data.address6}}</p>
+                                    <div id="label" class="label">City & Pincode</div>
+                                    <p id="field">{{Document.data.address7}}</p>
+                                    <div id="label" class="label">Country </div>
+                                    <p id="field">{{Document.data.address8}}</p>
+                                </div>
+                                <div class="column1">
+                                    <caption id="caption">Delivery Address</caption>
+                                    <br>
+                                    <div id="label" class="label">Building Name/Flat No/Floor</div>
+                                    <p id="field">{{Document.data.address9}}</p>
+                                    <div id="label" class="label">Locality/Landmark</div>
+                                    <p id="field">{{Document.data.address10}}</p>
+                                    <div id="label" class="label">City & Pincode</div>
+                                    <p id="field">{{Document.data.address11}}</p>
+                                    <div id="label" class="label">Country </div>
+                                    <p id="field">{{Document.data.address12}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <dxi-item title="Upload Documents" template="documentsTab"></dxi-item>
+                <div *dxTemplate="let DocsTabItem of 'documentsTab'">
+                    <div>
+                        <form id="form1" #form1 method="post" action="" enctype="multipart/form-data">
+                            <div id="updoc">Upload Documents for Business Registration:</div>
+                            <div class="content-block">
+                                <div class="dx-field" id="idkey">
+                                    <dx-text-box #D2 dataField="D2" name="DocumentType1" value="{{Document.key}}">
+                                    </dx-text-box>
+                                </div>
+                                <div class="row">
+                                    <div class="column" id="line"> 
+                                        <div >
+                                            <dx-text-box #D1 dataField="D1" name="DocumentType"
+                                                placeholder="Enter Doc Type"></dx-text-box>
+                                        </div>
+                                    </div>
+                                    <div class="column" id="line">
+                                        <div id="fileuploader-container">
+                                            <dx-file-uploader #D3 selectButtonText="Select Document"
+                                                accept="application/pdf" uploadMode="useForm" labelText="">
+                                            </dx-file-uploader>
+                                        </div>
+                                    </div>
+                                    <div class="column" id="line">
+                                        <div >
+                                            <dx-button text="Upload Document" type="success"
+                                                (click)="Upload(D2.value,D1.value,D3.value)">
+                                            </dx-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <dxi-item title="Uploaded Documents" template="Docs"></dxi-item>
+                <div *dxTemplate="let UploadedTabItem of 'Docs'">
+                    <div>
+                        <dx-data-grid [dataSource]="verif" [showBorders]="true" [columnHidingEnabled]="false"
+                            [columnAutoWidth]="true" (onCellPrepared)="onCellPrepared($event)" [showColumnLines]="true" >
+
+                            <dxi-column id="doctype12" dataField="DocumentType" caption="Document Type"
+                                cellTemplate="Tem">
+                            </dxi-column>
+                            <div *dxTemplate="let d of 'Tem'"><a href='{{d.data.CliUrl + d.data.DocUrl}}' id="a"
+                                    target='_blank'>{{d.data.DocumentType}}</a></div>
+                            <dxi-column dataField="Status" caption="Status"></dxi-column>
+                            <dxi-column dataField="UploadedOn" caption="Uploaded on"></dxi-column>
+                            <dxi-column dataField="VerifiedBy" caption="Verified By"></dxi-column>
+                            <dxi-column dataField="DocUrl" caption="DocUrl" [visible]="false"></dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </dx-tab-panel>
+        </div>
+    </dx-data-grid>
+</div>

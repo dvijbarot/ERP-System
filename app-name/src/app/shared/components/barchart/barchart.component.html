@@ -1,0 +1,31 @@
+<dx-chart text-align="center" id="chart" palette={{palette}} [dataSource]="dataSource">
+    <div text-align="center">
+        <dxo-title text={{title}}>
+            <dxo-subtitle text={{subtitle}}>
+                <dxo-font color="black" size="16px">
+                </dxo-font>
+            </dxo-subtitle>
+            <dxo-font color="black" size="18px">
+            </dxo-font>
+        </dxo-title>
+    </div>
+    <dxi-series argumentField={{argumentField}} valueField={{valueField}} name={{name}} type={{type}} title={{title}}
+        color={{color}}>
+    </dxi-series>
+    <dxo-legend position="outside" horizontalAlignment="center" verticalAlignment="bottom">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-loading-indicator [enabled]="true"></dxo-loading-indicator>
+    <dxo-adaptive-layout [height]="100" [width]="350" keepLabels="true"></dxo-adaptive-layout>
+    <dxo-animation
+        easing="linear"
+        [duration]="500"
+        [maxPointCountSupported]="100">
+    </dxo-animation>
+    <dxo-margin
+        [top]="20"
+        [bottom]="20"
+        [left]="30"
+        [right]="30">
+    </dxo-margin>
+</dx-chart>

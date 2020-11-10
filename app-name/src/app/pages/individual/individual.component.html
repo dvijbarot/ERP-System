@@ -1,0 +1,184 @@
+<div class="content-block dx-card" id="individual">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Individual Registration</p>
+    </div>
+</div>
+
+<div class="content-block">
+    <div id="data-grid">
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+            [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)"  [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" 
+            (onRowExpanding)="selectionChanged($event)">
+            <dxo-sorting mode="none"> </dxo-sorting>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+            <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showNavigationButtons]="true">
+            </dxo-pager>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+                <dxo-popup title="Individual Registration" [showTitle]="true" [width]="750"
+                    [position]="{ my: 'middle', at: 'middle'}"> </dxo-popup>
+                <dxo-form>
+                    <dxi-item itemType="group" caption="Individual Details" [colCount]="2" [colSpan]="2">
+                        <dxi-item dataField="Firstname"></dxi-item>
+                        <dxi-item dataField="Lastname"></dxi-item>
+                        <dxi-item dataField="role"></dxi-item>
+                        <dxi-item dataField="Email"></dxi-item>
+                        <dxi-item dataField="Telephone"></dxi-item>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Bank Details" [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="bankName"></dxi-item>
+                        <dxi-item dataField="bankcity"></dxi-item>
+                        <dxi-item dataField="bankcountry"></dxi-item>
+                        <dxi-item dataField="accountNo"></dxi-item>
+                        <dxi-item dataField="accounttype"></dxi-item>
+                        <dxi-item dataField="ifsc"></dxi-item>
+                        <dxi-item dataField="bankswiftcode"></dxi-item>
+                    </dxi-item>
+                    <dxi-item itemType="group" caption="Address" [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="address1"></dxi-item>
+                        <dxi-item dataField="address2"></dxi-item>
+                        <dxi-item dataField="address3"></dxi-item>
+                        <dxi-item dataField="address4"></dxi-item>
+                        <dxi-item dataField="city"></dxi-item>
+                        <dxi-item dataField="country"></dxi-item>
+                    </dxi-item>
+                </dxo-form>
+            </dxo-editing>
+            <dxi-column dataField="Firstname" caption="First Name"></dxi-column>
+            <dxi-column dataField="Lastname" caption="Last Name"></dxi-column>
+            <dxi-column dataField="role" caption="Role">
+                <dxo-lookup [dataSource]="positions" valueExpr="Name" displayExpr="Name"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="Email"></dxi-column>
+            <dxi-column dataField="Telephone"></dxi-column>
+            <dxi-column dataField="city" caption="City:" [visible]="false"></dxi-column>
+            <dxi-column dataField="country" caption="Country:" [visible]="false">
+                <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="bankName" caption="Bank Name" [visible]="false"></dxi-column>
+            <dxi-column dataField="bankcity" caption="Bank City" [visible]="false"></dxi-column>
+            <dxi-column dataField="ifsc" caption="IFSC" [visible]="false"></dxi-column>
+            <dxi-column dataField="accountNo" caption="Account Number:" [visible]="false"></dxi-column>
+            <dxi-column dataField="accounttype" caption="Account Type:" [visible]="false"></dxi-column>
+            <dxi-column dataField="address1" caption="Building Name/Flat Number/ Floor:" [visible]="false"></dxi-column>
+            <dxi-column dataField="address2" caption="Street Name:" [visible]="false"></dxi-column>
+            <dxi-column dataField="address3" caption="Locality:" [visible]="false"></dxi-column>
+            <dxi-column dataField="address4" caption="Landmark:" [visible]="false"></dxi-column>
+            <dxi-column dataField="Aadhar" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="Pancard" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="VoterID" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="Passport" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="Other" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="bankswiftcode" caption="Bank Swift Code" [visible]="false"></dxi-column>
+            <dxi-column dataField="bankcountry" caption="Bank Country" [visible]="false"></dxi-column>
+            <dxi-column dataField="imgUrl" [visible]="false"></dxi-column>
+            <dxi-column dataField="Username" [visible]="false" [allowEditing]="false"></dxi-column>
+            <dxi-column dataField="Password" [visible]="false" [allowEditing]="false"></dxi-column>
+            <div *dxTemplate="let Document of 'masterDetail'">
+                <dx-tab-panel [animationEnabled]="true">
+                    <dxi-item title="More Details" template="DetailsTab"></dxi-item>
+                    <div *dxTemplate="let DetailsTabItem of 'DetailsTab'">
+                        <br>
+                        <form>
+                            <div id="block">
+                                <div class="r">
+                                    <div class="c1">
+                                        Address Details
+                                    </div>
+                                    <div class="c2">
+                                        Bank Details
+                                    </div>
+                                </div>
+                                <div class="row1">
+                                    <div class="col1">
+                                        <br>
+                                        <div id="label">Building Name/Flat No/Floor</div>
+                                        <p id="field">{{Document.data.address1}}<p>
+                                                <div id="label">Street Name</div>
+                                                <p id="field">{{Document.data.address2}}</p>
+                                                <div id="label">Locality</div>
+                                                <p id="field">{{Document.data.address3}}<p>
+                                    </div>
+                                    <div class="column1">
+                                        <br>
+                                        <div id="label">Landmark </div>
+                                        <p id="field">{{Document.data.address4}}<p>
+                                                <div id="label">City</div>
+                                                <p id="field">{{Document.data.city}}<p>
+                                                        <div id="label">Country</div>
+                                                        <p id="field">{{Document.data.country}}<p>
+                                    </div>
+                                    <div class="column1">
+                                        <br>
+                                        <div id="label" class="label">Bank Name</div>
+                                        <p id="field">{{Document.data.bankName}}</p>
+                                        <div id="label" class="label">Bank City</div>
+                                        <p id="field">{{Document.data.bankcity}}</p>
+                                        <div id="label" class="label">Bank Country:</div>
+                                        <p id="field">{{Document.data.bankcountry}}</p>
+                                    </div>
+                                    <div class="column1">
+                                        <br>
+                                        <div id="label" class="label">Account Number</div>
+                                        <p id="field">{{Document.data.accountNo}}</p>
+                                        <div id="label" class="label">Account Type</div>
+                                        <p id="field">{{Document.data.accounttype}}</p>
+                                        <div id="label" class="label">IFSC:</div>
+                                        <p id="field">{{Document.data.ifsc}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dxi-item title="Upload Documents" template="documentsTab"></dxi-item>
+                    <div *dxTemplate="let DocsTabItem of 'documentsTab'">
+                        <form id="form1" #form1 method="post" action="" enctype="multipart/form-data">
+                            <div id="idkey"> Upload Documents for Individual Registration:</div>
+                            <div class="content-block">
+                                <div class="dx-field" id="idkey">
+                                    <dx-text-box #D2 dataField="D2" name="DocumentType1" value="{{Document.key}}">
+                                    </dx-text-box>
+                                </div>
+                                <div class="row">
+                                    <div class="column" id="line">
+                                        <dx-select-box #D1 dataField="D1" [items]="docs"
+                                            placeholder="Choose a document to upload">
+                                        </dx-select-box>
+                                    </div>
+                                    <div class="column" id="line">
+                                        <div id="fileuploader-container">
+                                            <dx-file-uploader #D3 selectButtonText="Select Document" labelText=""
+                                                type="file" accept="application/pdf" uploadMode="useForm">
+                                            </dx-file-uploader>
+                                        </div>
+                                    </div>
+                                    <div class="column" id="line">
+                                        <dx-button text="Upload Document" type="success"
+                                            (click)="Upload(D2.value,D1.value,D3.value)">
+                                        </dx-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dxi-item title="Uploaded Documents" template="uploadedTab"></dxi-item>
+                    <div *dxTemplate="let UploadedTabItem of 'uploadedTab'">
+                        <div id="updoc">View Uploaded Documents:</div>
+                        <dx-data-grid [showBorders]="true" [columnHidingEnabled]="false" [columnAutoWidth]="true"
+                            [dataSource]="uploaded" (onSelectionChanged)="selectionChanged($event)" [showColumnLines]="true" [showRowLines]="true" 
+                            [showBorders]="true" 
+                            (onRowExpanding)="selectionChanged($event)" (onCellPrepared)="onCellPrepared($event)">
+                            <dxi-column dataField='k' caption="Document Type"></dxi-column>
+                            <dxi-column dataField='v' caption="Links" cellTemplate="Links"></dxi-column>
+                            <div *dxTemplate="let d of 'Links'">
+                                <a href='{{d.data.CliUrl + d.data.v}}' id="a" target='_blank'>Uploaded</a>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </dx-tab-panel>
+            </div>
+        </dx-data-grid>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="content-block dx-card" id="business">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Add Role</p>
+    </div>
+</div>
+<div class="content-block dx-card">
+    <div id="data-grid-demo">
+        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+            [columnAutoWidth]="true" [allowColumnReordering]="true" [showColumnLines]="true">
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+                <dxo-popup title="Add Role" [showTitle]="true" [width]="750"
+                    [position]="{ my: 'middle', at: 'middle' }">
+                </dxo-popup>
+                <dxo-form>
+                    <dxi-item itemType="group" caption="Role Details" [colCount]="3" [colSpan]="2">
+                        <dxi-item dataField="Role"></dxi-item>
+                        <dxi-item dataField="AccessLevel"></dxi-item>
+                        <dxi-item dataField="rStatus"></dxi-item>
+                    </dxi-item>
+                </dxo-form>
+            </dxo-editing>
+
+            <dxi-column dataField="Role"></dxi-column>
+            <dxi-column dataField="AccessLevel" [groupIndex]="0">
+                <dxo-lookup [dataSource]="accesslevel" valueExpr="accesslevel" displayExpr="accesslevel">
+                </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="rStatus"></dxi-column>
+        </dx-data-grid>
+    </div>
+</div>

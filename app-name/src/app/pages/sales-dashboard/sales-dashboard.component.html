@@ -1,0 +1,80 @@
+<div class="content-block">
+    <dx-responsive-box>
+      <dxi-row></dxi-row>
+      <dxi-row></dxi-row>
+      <dxi-col></dxi-col>
+      <dxi-col></dxi-col>
+      <dxi-col></dxi-col>
+      <dxi-col></dxi-col>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="0" screen="md lg"></dxi-location>
+        <dxi-location [row]="0" [col]="0" screen="xs sm"></dxi-location>
+        <app-stat id="card2" [icon]="'dx-icon-product'" [class]="'dx-card '" [count]="countSl" [label]="'Sell Leads'">
+        </app-stat>
+      </dxi-item>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="1" screen="md lg"></dxi-location>
+        <dxi-location [row]="0" [col]="1" [colspan]="2" screen="xs sm"></dxi-location>
+        <app-stat id="card4" [icon]="'dx-icon-warning'" [class]="'dx-card '" [count]="12" [label]="'Calls Left'">
+        </app-stat>
+      </dxi-item>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="2" screen="md lg"></dxi-location>
+        <dxi-location [row]="1" [col]="0" screen="xs sm"></dxi-location>
+        <app-stat id="card3" [icon]="'dx-icon-tel'" [class]="'dx-card '" [count]="countCall" [label]="'Calls Done'">
+        </app-stat>
+      </dxi-item>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="3" screen="md lg"></dxi-location>
+        <dxi-location [row]="1" [col]="1" [colspan]="2" screen="xs sm"></dxi-location>
+        <app-stat id="card1" [icon]="'dx-icon-cart'" [class]="'dx-card'" [count]="countBl" [label]="'Buy Leads'"
+          [bgClass]="'red'">
+        </app-stat>
+      </dxi-item>
+    </dx-responsive-box>
+    <dx-responsive-box>
+      <dxi-row></dxi-row>
+      <dxi-row></dxi-row>
+      <dxi-col></dxi-col>
+      <dxi-col></dxi-col>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="0" screen="md lg"></dxi-location>
+        <dxi-location [row]="0" [col]="0" [colspan]="2" screen="xs sm"></dxi-location>
+        <div class="dx-card">
+          <app-pie-chart [id]="'Pie'" [title]="'Commodity Wise Sell Demand'" [innerRadius]="'0.00'"
+            subtitle="{{TodayDate}}" [palette]="'Material'" [extension]="'Alternate'" [type]="'pie'" [name]="''"
+            [argumentField]="'CommodityName'" [valueField]="'total'" [format]="'units'" [format]="''" [URL]="'sellchart'">
+          </app-pie-chart>
+        </div>
+      </dxi-item>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="1" screen="md lg"></dxi-location>
+        <dxi-location [row]="1" [col]="0" [colspan]="2" screen="xs sm"></dxi-location>
+        <div class="dx-card">
+          <app-pie-chart [id]="'Pie'"[title]="'Commodity Wise Buy Demand'" [innerRadius]="'0.00'"
+            subtitle="{{TodayDate}}" [palette]="'Material'" [type]="'pie'" [name]="'units'" [argumentField]="'CommodityName'"
+            [valueField]="'total'" [format]="'units'" [format]="''" [URL]="'buychart'">
+          </app-pie-chart>
+        </div>
+      </dxi-item>
+    </dx-responsive-box>
+    <dx-responsive-box>
+      <dxi-row></dxi-row>
+      <dxi-col></dxi-col>
+      <dxi-item>
+        <dxi-location [row]="0" [col]="0" screen="md lg"></dxi-location>
+        <dxi-location [row]="0" [col]="0" screen="xs sm"></dxi-location>
+        <div class="dx-card">
+          <div>
+            <dx-select-box #commodityname id="select" dataField="commodityname" [items]="productlist"
+              (onSelectionChanged)="getGraph(commodityname.value)" placeholder="Select Commodity...">
+            </dx-select-box>
+          </div>
+          <app-barchart *ngIf="isShown" title="Weekly Demand for {{Commodity}}" subtitle="{{TodayDate}}" name="{{Commodity}}" [argumentField]="'week'" [valueField]="'total'"
+            [type]="'line'" [palette]="'Material'" URL="{{Base}}com"
+            [Param]="{'commodit':Commodity}">
+          </app-barchart>
+        </div>
+      </dxi-item>
+    </dx-responsive-box>
+  </div>

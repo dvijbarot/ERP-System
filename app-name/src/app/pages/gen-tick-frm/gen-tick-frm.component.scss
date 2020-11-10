@@ -1,0 +1,47 @@
+#button{
+  display: inline-flex;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+::ng-deep #data-grid-demo {
+  min-height: 33.125rem;
+}
+::ng-deep .title h3 {
+  font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+  font-size: large;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  font-weight: bold;
+}
+
+.search-hero {
+  max-width: 31.25rem;
+  padding-bottom: 3.125rem;
+  margin:auto;
+}
+
+.form-control {
+  box-shadow: 0 0.625rem 2.5rem 0 #B0C1D9;
+}
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}
+.column {
+  float: left;
+  width: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row1{
+  display: flex;
+}
+.column1{
+  flex: 50;
+  padding-right: 1.25rem;
+}

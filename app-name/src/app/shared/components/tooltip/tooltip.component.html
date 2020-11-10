@@ -1,0 +1,18 @@
+<div class="form">
+    <div class="label">Default mode</div>
+    <div>
+        <img 
+            id="product1" 
+            (mouseenter)="toggleDefault()" 
+            (mouseleave)="toggleDefault()" 
+        >
+        <dx-tooltip 
+            target={{target}}
+            [(visible)]="defaultVisible"
+            [closeOnOutsideClick]="false">
+            <div *dxTemplate="let data = data of 'content'">
+                ExcelRemote IR
+            </div>
+        </dx-tooltip>
+    </div>
+</div>

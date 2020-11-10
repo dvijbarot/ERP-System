@@ -1,0 +1,34 @@
+<dx-pie-chart id={{id}} palette={{palette}} paletteExtensionMode={{extension}} [dataSource]='dataSource'
+    (onPointClick)="pointClickHandler($event)" (onLegendClick)="legendClickHandler($event)">
+    <div text-align="center">
+        <dxo-title text={{title}}>
+            <dxo-subtitle text={{subtitle}}>
+                <dxo-font color="black" size="16px">
+                </dxo-font>
+            </dxo-subtitle>
+            <dxo-font color="black" size="18px">
+            </dxo-font>
+        </dxo-title>
+    </div>
+    <dxo-tooltip [enabled]="true" format={{format}} [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+    <dxo-legend hoverMode="excludePoints" position="outside" horizontalAlignment="center" verticalAlignment="bottom"></dxo-legend>
+    <dxi-series name={{name}} argumentField={{argumentField}} valueField={{valueField}}>
+        <dxo-label [visible]="true" customizeText="customizeLabel">
+            <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+        </dxo-label>
+    </dxi-series>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-loading-indicator [enabled]="true"></dxo-loading-indicator>
+    <dxo-adaptive-layout [height]="100" [width]="350" keepLabels="true"></dxo-adaptive-layout>
+    <dxo-animation
+        easing="linear"
+        [duration]="500"
+        [maxPointCountSupported]="100">
+    </dxo-animation>
+    <dxo-margin
+        [top]="20"
+        [bottom]="20"
+        [left]="30"
+        [right]="30">
+    </dxo-margin>
+</dx-pie-chart>

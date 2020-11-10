@@ -1,0 +1,119 @@
+#individual{
+  border: 1px solid skyblue;
+}
+#block{
+  padding-top:2px
+}
+#idkey{
+  display:none;
+}
+#caption{
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+  padding-top: 10px;
+  
+}
+#label{
+  font-size:16px;
+  font-family: Serif	;
+}
+#field{
+  font-size:13px;
+  font-family: Arial;
+  color:  darkcyan;
+}
+.row1 {
+  display: flex;
+}
+.row {
+  display: flex;
+}
+.col1{
+  flex: 50%;
+  padding-left: 30px;
+ 
+}
+.column{
+  flex: 50%;
+  padding-top:30px
+}
+.column1{
+  flex: 50%;
+  padding-left: 70px;
+  padding-right:20px;
+}
+.r{
+display: flex;
+}
+.c1{
+flex: 50%;
+font-family: 'Times New Roman', Times, serif;
+padding-left: 70px;
+font-size: 25px;
+padding-top: 5px;
+}
+.c2{
+flex: 50%;
+font-family: 'Times New Roman', Times, serif;
+padding-left: 70px;
+font-size: 25px;
+padding-top: 5px;
+}
+.row3{
+display: flex;
+} 
+
+.column3{
+flex: 50%;
+padding-top: 20px;
+padding-bottom: 20px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+#anchor{
+  color:#034f84;
+  font-size:18px;
+}
+#updoc{
+  font-size: 17px;
+  padding-left: 30px;
+  padding-top:20px
+}
+
+#doctype{
+  font-size: 17px;  
+  position: static;
+  display:none;
+}
+::ng-deep #form {
+  max-width: 600px;
+  margin: auto;
+}
+::ng-deep #button {
+  margin-top: 15px;
+  margin-left: 350px;
+  float: center;
+}
+// ::ng-deep #fileuploader-container{
+//     border: 1px solid #d3d3d3;
+//     
+// }
+::ng-deep #form h3 {
+  margin-left: 20px;
+  font-weight: normal;
+  font-size: 22px;
+}
+::ng-deep #fileuploader-container{
+border: 1px solid #d3d3d3;  
+}
+#doct{
+  font-size: 15px;
+  font-family: Arial;
+}
+#line{
+padding-left: 10px;
+padding-right: 10px;
+padding-top:10px;
+padding-bottom:10px
+}

@@ -1,0 +1,37 @@
+<dx-pie-chart
+    id={{id}}
+    palette={{palette}}
+    type={{type}}
+    innerRadius= {{innerRadius}}
+    [dataSource]='dataSource'>
+    <div text-align="center">
+    <dxo-title 
+        text={{title}}>
+        <dxo-subtitle
+            text={{subtitle}}></dxo-subtitle>
+    </dxo-title>
+</div>
+<dxo-label [visible]="true">
+    <dxo-connector>
+        [visible]="true"
+        [width]="true"
+    </dxo-connector>
+</dxo-label>
+    <dxo-legend [visible]="true"></dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-common-series-settings>
+        <dxo-label [visible]="false"></dxo-label>
+    </dxo-common-series-settings>
+    <dxo-tooltip
+        [enabled]="true"
+        format={{format}}
+        [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+    <dxi-series
+        name={{name}}
+        argumentField={{argumentField}}
+        valueField={{valueField}}></dxi-series>
+    <dxi-series
+        name={{nme}}
+        argumentField={{argField1}}
+        valueField={{valField1}}></dxi-series>
+</dx-pie-chart> 

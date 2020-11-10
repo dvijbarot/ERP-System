@@ -1,0 +1,202 @@
+<div class="content-block dx-card" id="business">
+    <div style="text-align: center">
+        <p style="font-size:25px;">Add Employee</p>
+    </div>
+</div>
+<div class="content-block dx-card">
+    <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true" [columnHidingEnabled]="true"
+        [columnAutoWidth]="true" [allowColumnReordering]="true" [showColumnLines]="true"
+        (onRowExpanding)="selectionChanged($event)" (onSelectionChanged)="selectionChanged($event)">
+        <dxo-paging [enabled]="true"></dxo-paging>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+        <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+            <dxo-popup title="Add Employee" [showTitle]="true" [width]="750"
+                [position]="{ my: 'middle', at: 'middle' }">
+            </dxo-popup>
+            <dxo-form>
+                <dxi-item itemType="group" caption="Employee Details" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="FirstName"></dxi-item>
+                    <dxi-item dataField="LastName"></dxi-item>
+                    <dxi-item dataField="Phone"></dxi-item>
+                    <dxi-item dataField="Email"></dxi-item>
+                    <dxi-item dataField="BirthDate"></dxi-item>
+                    <dxi-item dataField="HireDate"></dxi-item>
+                    <dxi-item dataField="ServiceTerminationDate"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Address" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="address1"></dxi-item>
+                    <dxi-item dataField="address2"></dxi-item>
+                    <dxi-item dataField="address3"></dxi-item>
+                    <dxi-item dataField="address4"></dxi-item>
+                    <dxi-item dataField="address5"></dxi-item>
+                    <dxi-item dataField="address6"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Role, Department and Employee Status" [colCount]="3" [colSpan]="2">
+                    <dxi-item dataField="Role"></dxi-item>
+                    <dxi-item dataField="Department"></dxi-item>
+                    <dxi-item dataField="Manager"></dxi-item>
+                    <dxi-item dataField="eStatus"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Username and Password" [colCount]="2" [colSpan]="2">
+                    <dxi-item dataField="Username"></dxi-item>
+                    <dxi-item dataField="Password"></dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" caption="Modified by and Modified on" [colCount]="2" [colSpan]="2">
+                    <!-- <dxi-item dataField="ModifiedBy">{{setUser()}}</dxi-item> -->
+                    <div *dxTemplate>
+                        <dx-text-box dataField="ModifiedBy" [disabled]="false" [readOnly]="false" [value]="setUser()">
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+            </dxo-form>
+        </dxo-editing>
+        <dxi-column dataField="FirstName"></dxi-column>
+        <dxi-column dataField="LastName"></dxi-column>
+        <dxi-column dataField="Phone"></dxi-column>
+        <dxi-column dataField="Email"></dxi-column>
+        <dxi-column dataField="address1" caption="Building Name/ Flat Number/ Floor" [visible]='false'></dxi-column>
+        <dxi-column dataField="address2" caption="Street Name/ Colony/ Locality" [visible]='false'></dxi-column>
+        <dxi-column dataField="address3" caption="Landmark" [visible]='false'></dxi-column>
+        <dxi-column dataField="address4" caption="City and State" [visible]='false'></dxi-column>
+        <dxi-column dataField="address5" caption="Pin Code" [visible]='false'></dxi-column>
+        <dxi-column dataField="address6" caption="Country" [visible]='false'>
+            <dxo-lookup [dataSource]="countries" valueExpr="value" displayExpr="value" placeholder="Select Country">
+            </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="BirthDate" dataType="date" [visible]='false'></dxi-column>
+        <dxi-column dataField="HireDate" dataType="date" [visible]='false'></dxi-column>
+        <dxi-column dataField="ServiceTerminationDate" dataType="date" [visible]='false'></dxi-column>
+        <dxi-column dataField="ModifiedBy" [visible]='false' >
+           
+        </dxi-column>
+        <dxi-column dataField="Role">
+            <dxo-lookup [dataSource]="role" valueExpr="_id" displayExpr="Role">
+            </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="Department" [groupIndex]="0">
+            <dxo-lookup [dataSource]="department" valueExpr="_id" displayExpr="Department">
+            </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="Manager">
+            <dxo-lookup [dataSource]="employee" valueExpr="prevID" displayExpr="FirstName">
+            </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="eStatus"></dxi-column>
+        <dxi-column dataField="Username"></dxi-column>
+        <dxi-column dataField="Password" [visible]='false'></dxi-column>
+        <div *dxTemplate="let Document of 'masterDetail'">
+            <dx-tab-panel>
+                <dxi-item title="Details" template="detailTab"></dxi-item>
+                <div *dxTemplate="let DetailsTabItem of 'detailTab'">
+                    <br>
+                    <form>
+                        <div class="content-block" id="block">
+                            <div class="row1">
+                                <div class="column1">
+                                    <div id="label">Profile Picture:</div>
+                                    <img src="{{Document.data.BS + Document.data.ImageUrl}}" id="field"
+                                        style="width:250px; height:200px">
+
+                                    <caption id="caption">Addesss Details:</caption>
+                                    <br>
+                                    <div id="label">Building Name/Flat no./Floor:</div>
+                                    <p id="field">{{Document.data.address1}}</p>
+
+                                    <div id="label">Street Name/Colony/Locality:</div>
+                                    <p id="field">{{Document.data.address2}}</p>
+
+                                    <div id="label">Landmark:</div>
+                                    <p id="field">{{Document.data.address3}}</p>
+
+                                    <div id="label">City and State:</div>
+                                    <p id="field">{{Document.data.address4}}</p>
+
+                                    <div id="label">Pin Code:</div>
+                                    <p id="field">{{Document.data.address5}}</p>
+
+                                    <div id="label">Country:</div>
+                                    <p id="field">{{Document.data.address6}}</p>
+                                </div>
+                                <div class="column1">
+                                    <caption id="caption">Dates:</caption>
+                                    <br>
+                                    <div id="label">Birth Date:</div>
+                                    <p id="field">{{Document.data.BirthDate}}</p>
+                                    <div id="label">Hire Date:</div>
+                                    <p id="field">{{Document.data.HireDate}}</p>
+                                    <div id="label">Service Termination Date:</div>
+                                    <p id="field">{{Document.data.ServiceTerminationDate}}</p>
+                                </div>
+                                <!-- <div class="column1">
+                                    <caption id="caption">Modified on and Modified by:</caption>
+                                    <br>
+                                    <div id="label">Modified By:</div>
+                                    <p id="field">{{Document.data.ModifiedBy}}</p>
+                                </div> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <dxi-item title="Upload Documents" template="documentsTab"></dxi-item>
+                <div *dxTemplate="let DocsTabItem of 'documentsTab'">
+                    <form id="form1" #form1 methods="post" action=" " enctype="multipart/form-data">
+                        <div class="dx-fieldset">
+                            <div class="dx-field">
+                            </div>
+                            <div>
+                                <div class="dx-field">
+                                    <dx-text-box #D2 dataField="D2" name="DocumentType1" value={{Document.key}}
+                                        [visible]="false">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-block">
+                            <p>Upload Image in PNG, JPG, JPEG format only.</p>
+                            <p>Upload Documents in PDF, DOC, DOCX format only.</p>
+                            <div class="column">
+                                <dx-select-box #D1 dataField="D1" name="DocumentType" placeholder="Select Document Type"
+                                    [items]="docType" [showClearButton]="true">
+                                </dx-select-box>
+                                <br>
+                                <dx-text-box #Des dataField="Des" name="DocDescription"
+                                    placeholder="Specify Document Type" [showClearButton]="true">
+                                </dx-text-box>
+                                <br>
+                                <div id="fileuploader-container">
+                                    <dx-file-uploader #D3 selectButtonText="Select Document"
+                                        accept=".docx,.doc,.pdf,.png,.jpg,.jpeg" uploadMode="useForm">
+                                    </dx-file-uploader>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-block">
+                            <div class="column">
+                                <dx-button text="Upload Document" type="success"
+                                    (click)="Upload(D2.value,D1.value,D3.value,Des.value)">
+                                </dx-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <dxi-item title="Uploaded Documents" template="uploadedTab"></dxi-item>
+                <div *dxTemplate="let UploadedTabItem of 'uploadedTab'">
+                    <dx-data-grid id="gridContainer" [dataSource]="uploaded" [showBorders]="true"
+                        [columnHidingEnabled]="false" [columnAutoWidth]="true" [allowColumnReordering]="true"
+                        [showColumnLines]="true">
+                        <dxi-column dataField="DocumentType"></dxi-column>
+                        <dxi-column dataField="DocDescription"></dxi-column>
+                        <dxi-column dataField="DocUrl" cellTemplate="Tem"></dxi-column>
+                        <div *dxTemplate="let d of 'Tem'"><a href='{{d.data.BS + d.data.DocUrl}}'
+                                target="_blank">uploaded</a></div>
+                        <dxi-column dataField="VerifiedOn"></dxi-column>
+                        <!-- <dxi-column dataField="VerifiedBy"></dxi-column> -->
+                    </dx-data-grid>
+                </div>
+            </dx-tab-panel>
+        </div>
+    </dx-data-grid>
+</div>
